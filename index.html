@@ -27,43 +27,49 @@
         <img onload="call(this)" src="./img/dp.jpg" alt="21">
     </div>
     <main>
-<!-- ################################################################################ -->
-        <a href="./img/_D819161-Edit-XL.jpg" target="_blank">
-            <div class="imgContainer">
-                <div class="loading"></div>
-                <img onload="call(this)" src="./img/_D819161-Edit-XL.jpg" alt="22">
-            </div>
-        </a>
-<!-- ################################################################################ -->
-        <a href="./img/adventure-1807524.jpg" target="_blank">
-            <div class="imgContainer">
-                <div class="loading"></div>
-                <img onload="call(this)" src="./img/adventure-1807524.jpg" alt="23">
-            </div>
-        </a>
-<!-- ################################################################################ -->
-        <a href="./img/cliff background.jpg" target="_blank">
-            <div class="imgContainer">
-                <div class="loading"></div>
-                <img onload="call(this)" src="./img/cliff background.jpg" alt="24">
-            </div>
-        </a>
-<!-- ################################################################################ -->
-        <a href="./img/cliff-2699812.jpg" target="_blank">
-            <div class="imgContainer">
-                <div class="loading"></div>
-                <img onload="call(this)" src="./img/cliff-2699812.jpg" alt="25">
-            </div>
-        </a>
-<!-- ################################################################################ -->
-        <a href="./img/rocky-mountain-1149298.jpg" target="_blank">
-            <div class="imgContainer">
-                <div class="loading"></div>
-                <img onload="call(this)" src="./img/rocky-mountain-1149298.jpg" alt="25">
-            </div>
-        </a>
-<!-- ################################################################################ -->
+
     </main>
+
+    <script>
+        let arr = ["rocky-mountain-1149298.jpg","cliff-2699812.jpg","_D819161-Edit-XL.jpg"]
+
+        for (let name of arr) {
+            let a = document.createElement('a')
+            a.setAttribute('target', "_blank")
+            a.setAttribute('href', `./img/${name}`)
+
+            let imgContainer = document.createElement('div')
+            imgContainer.classList.add('imgContainer')
+
+            let loading = document.createElement('div')
+            loading.classList.add('loading')
+
+            let img = document.createElement('img')
+            img.setAttribute('onload', 'call(this)')
+            img.setAttribute('src', `./img/${name}`)
+
+            imgContainer.appendChild(loading)
+            imgContainer.appendChild(img)
+            a.appendChild(imgContainer)
+
+            let main = document.querySelector('main')
+            main.appendChild(a)
+        }
+
+        let i = 0
+        setInterval(() => {
+            console.log(i)
+            let imgAni = document.querySelectorAll('a img')
+            if(i>=arr.length)
+            {
+                imgAni[i-1].classList.remove('imgAni')
+                i=0;
+            }
+            if(i>0)
+                imgAni[i-1].classList.remove('imgAni')
+            imgAni[i++%arr.length].classList.add('imgAni')
+        }, 6000);
+    </script>
 </body>
 
 </html>
